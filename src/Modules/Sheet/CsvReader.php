@@ -2,7 +2,8 @@
 
 namespace Modules\Sheet;
 
-use Core\Interfaces\CsvReaderInterface;
+use Core\Interfaces\File\CsvReaderInterface;
+use Exception;
 use Generator;
 
 class CsvReader implements CsvReaderInterface
@@ -35,22 +36,28 @@ class CsvReader implements CsvReaderInterface
         return $data;
     }
 
-    public function readAsChunk(int $chunkSize): Generator
-    {
-        $file = fopen($this->filePath, 'r');
+public function readAsChunk(int $chunkSize): Generator
+{
+    $file = fopen($this->filePath, 'r');
 
-        $columns = fgetcsv($file);
-
-        $chunk = [];
-
-        while (($row = fgetcsv($file))) {
-            $chunk[] = $row;
-            if(count($chunk) === $chunkSize) {
-                yield new CsvChunk($columns, $chunk);
-                $chunk = [];
-            }
-        }
-
-        fclose($file);
+    if (!$file) {
+        throw new Exception("Erro ao ler arquivo.");
     }
+
+    $columns = fgetcsv($file);
+
+    while (($row = fgetcsv($file)) !== false) {
+        $chunk[] = $row;
+        if (sizeof($chunk) === $chunkSize) {
+            yield new CsvChunk($columns, $chunk);
+            $chunk = [];
+        }
+    }
+
+    if (!empty($chunk)) {
+        yield new CsvChunk($columns, $chunk);
+    }
+
+    fclose($file);
+}
 }
