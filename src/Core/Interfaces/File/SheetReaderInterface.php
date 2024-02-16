@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Interfaces;
+namespace Core\Interfaces\File;
 
 use Generator;
 use Modules\Sheet\CsvChunk;

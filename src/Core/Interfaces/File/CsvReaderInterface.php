@@ -1,5 +1,5 @@
 <?php
-namespace Core\Interfaces;
+namespace Core\Interfaces\File;
 
 interface CsvReaderInterface extends SheetReaderInterface
 {
