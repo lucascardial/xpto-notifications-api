@@ -26,4 +26,11 @@ interface SheetReaderInterface
      * @return Generator<CsvChunk>
      */
     public function readAsChunk(int $chunkSize): Generator;
+
+    /**
+     * Check if the file has the required headers columns
+     * @param array $requiredHeaders
+     * @return bool
+     */
+    public function hasRequiredColumns(array $requiredHeaders): bool;
 }

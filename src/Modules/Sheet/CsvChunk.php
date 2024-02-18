@@ -33,25 +33,15 @@ class CsvChunk
     }
 
     /**
-     * @param string $column
-     * @param array $values
-     * @return array[]
+     * This method returns the values of the rows combined the columns as keys.
+     * @return array
      */
-    public function except(string $column, array $values): array
+    public function getValuesWithColumns(): array
     {
-        $index = array_search($column, $this->columns);
-        if ($index === false) {
-            return [];
-        }
-
         $result = [];
-
         foreach ($this->rows as $row) {
-            if (!in_array($row[$index], $values)) {
-                $result[] = array_combine($this->columns, $row);
-            }
+            $result[] = array_combine($this->columns, $row);
         }
-
         return $result;
     }
 }

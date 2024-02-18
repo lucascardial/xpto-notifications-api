@@ -36,28 +36,43 @@ class CsvReader implements CsvReaderInterface
         return $data;
     }
 
-public function readAsChunk(int $chunkSize): Generator
-{
-    $file = fopen($this->filePath, 'r');
+    public function readAsChunk(int $chunkSize): Generator
+    {
+        $file = fopen($this->filePath, 'r');
 
-    if (!$file) {
-        throw new Exception("Erro ao ler arquivo.");
-    }
-
-    $columns = fgetcsv($file);
-
-    while (($row = fgetcsv($file)) !== false) {
-        $chunk[] = $row;
-        if (sizeof($chunk) === $chunkSize) {
-            yield new CsvChunk($columns, $chunk);
-            $chunk = [];
+        if (!$file) {
+            throw new Exception("Erro ao ler arquivo.");
         }
+
+        $columns = fgetcsv($file);
+
+        while (($row = fgetcsv($file)) !== false) {
+            $chunk[] = $row;
+            if (sizeof($chunk) === $chunkSize) {
+                yield new CsvChunk($columns, $chunk);
+                $chunk = [];
+            }
+        }
+
+        if (!empty($chunk)) {
+            yield new CsvChunk($columns, $chunk);
+        }
+
+        fclose($file);
     }
 
-    if (!empty($chunk)) {
-        yield new CsvChunk($columns, $chunk);
-    }
+    public function hasRequiredColumns(array $requiredHeaders): bool
+    {
+        $file = fopen($this->filePath, 'r');
 
-    fclose($file);
-}
+        if (!$file) {
+            throw new Exception("Erro ao ler arquivo.");
+        }
+
+        $headers = fgetcsv($file);
+
+        fclose($file);
+
+        return empty(array_diff($requiredHeaders, $headers));
+    }
 }
