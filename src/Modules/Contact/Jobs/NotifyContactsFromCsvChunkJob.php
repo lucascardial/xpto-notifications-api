@@ -24,6 +24,11 @@ class NotifyContactsFromCsvChunkJob implements ShouldQueue
     {
     }
 
+    /**
+     * For each row in the csv chunk, schedule a notification
+     * @param ScheduleNotifyContactCommandHandler $handler
+     * @return void
+     */
     public function handle(ScheduleNotifyContactCommandHandler $handler): void
     {
 
@@ -41,7 +46,7 @@ class NotifyContactsFromCsvChunkJob implements ShouldQueue
                 contact: $contact,
                 channel: $contactType->notifyBy(),
                 template: 'default-notification',
-                scheduleTime: now()->addHour(2)
+                scheduleTime: now()->addMinutes(25)
             );
 
             $handler->handle($command);

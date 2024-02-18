@@ -15,14 +15,11 @@ class PersistContactFromCsvChunkJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-
     public function __construct(
         public readonly CsvChunk $csvChunk
     )
     {
-        //
     }
-
 
     public function handle(PersistChunkContactsCommandHandler $handler): void
     {
