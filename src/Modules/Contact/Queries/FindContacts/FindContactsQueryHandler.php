@@ -5,22 +5,17 @@ namespace Modules\Contact\Queries\FindContacts;
 use Core\Interfaces\Cqrs\QueryHandlerInterface;
 use Core\Interfaces\Cqrs\QueryInterface;
 use Illuminate\Database\Connection;
+use Modules\Contact\Models\Contact;
 
 class FindContactsQueryHandler implements QueryHandlerInterface
 {
-    public function __construct(
-        private readonly Connection $connection
-    )
-    {
-    }
-
     /**
      * @param FindContactsQuery $query
      * @return array
      */
     public function handle(QueryInterface $query): array
     {
-        return $this->connection->table('contacts')
+        return Contact::query()
             ->selectRaw('DISTINCT contact')
             ->whereIn('contact', $query->contacts)
             ->get()
