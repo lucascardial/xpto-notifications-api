@@ -1,6 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Contacts\EditContactNotificationController;
+use App\Http\Controllers\Contacts\ListContactFileImportController;
+use App\Http\Controllers\Contacts\ListContactNotificationController;
+use App\Http\Controllers\Contacts\ShowContactNotificationController;
+use App\Http\Controllers\Contacts\UploadCsvController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +18,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('v1')->name('v1.')->group(function () {
+    Route::prefix('contacts')->name('contacts.')->group(function () {
+        Route::get('notifications', ListContactNotificationController::class);
+
+        Route::get('notifications/{id}', ShowContactNotificationController::class)
+            ->name('notifications.show');
+
+        Route::put('notifications/{id}', EditContactNotificationController::class)
+            ->name('notifications.edit');
+
+        Route::post('upload-csv', UploadCsvController::class)->name('upload-csv');
+
+        Route::get('imports', ListContactFileImportController::class)->name('imports');
+    });
 });
