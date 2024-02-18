@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Modules\Contact\Enums\ContactNotificationStatusEnum;
 
 return new class extends Migration
 {
@@ -17,6 +18,7 @@ return new class extends Migration
             $table->text('content');
             $table->timestamp('schedule_time');
             $table->string('channel');
+            $table->string('status')->default(ContactNotificationStatusEnum::PENDING);
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('contact_notifications');
     }
 };
