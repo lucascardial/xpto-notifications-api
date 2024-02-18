@@ -9,5 +9,6 @@ class ContactModuleServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadViewsFrom(__DIR__ . '/Resource/views/', 'contact');
+        $this->loadTranslationsFrom(__DIR__ . '/Resource/lang/', 'contact');
     }
 }
