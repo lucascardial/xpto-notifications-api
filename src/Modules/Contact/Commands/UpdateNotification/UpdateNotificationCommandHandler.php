@@ -4,6 +4,7 @@ namespace Modules\Contact\Commands\UpdateNotification;
 
 use Core\Interfaces\Cqrs\CommandHandlerInterface;
 use Core\Interfaces\Cqrs\CommandInterface;
+use Modules\Contact\Helpers;
 use Modules\Contact\Models\ContactNotification;
 
 class UpdateNotificationCommandHandler implements CommandHandlerInterface
@@ -15,11 +16,12 @@ class UpdateNotificationCommandHandler implements CommandHandlerInterface
     public function handle(CommandInterface $command): void
     {
        ContactNotification::query()
-            ->where('id', $command->id)
+            ->where('uuid', $command->id)
             ->update([
                 'content' => $command->content,
                 'contact' => $command->contact,
-                'schedule_time' => $command->scheduleDate
+                'schedule_time' => $command->scheduleDate,
+                'channel' => Helpers::checkContactType($command->contact)
             ]);
     }
 }
