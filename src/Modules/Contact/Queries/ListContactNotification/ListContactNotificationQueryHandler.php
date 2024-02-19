@@ -24,11 +24,11 @@ class ListContactNotificationQueryHandler implements QueryHandlerInterface
             ->paginate($limit, ['*'], 'page', $page)
             ->through(function (ContactNotification $notification) {
                 return [
-                    'id' => $notification->id,
+                    'id' => $notification->uuid,
                     'contact' => $notification->contact,
                     'content' => $notification->content,
                     'status' => $notification->status,
-                    'schedule_date' => $notification->schedule_time?->format('Y-m-d H:i:s'),
+                    'schedule_date' => $notification->schedule_time,
                     'channel' => $notification->channel
                 ];
             });

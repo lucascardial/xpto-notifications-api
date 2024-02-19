@@ -15,7 +15,7 @@ class ListContactFileImportQueryHandler
                 'id' => $contactFileImport->uuid,
                 'name' => $contactFileImport->file_name,
                 'status' => $contactFileImport->status->getLabel(),
-                'date' => $contactFileImport->created_at->format('d/m/Y H:i'),
+                'date' => $contactFileImport->created_at,
                 'total_lines' => $contactFileImport->total_lines,
             ]);
     }

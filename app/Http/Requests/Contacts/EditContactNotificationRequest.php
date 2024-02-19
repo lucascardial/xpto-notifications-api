@@ -31,7 +31,7 @@ class EditContactNotificationRequest extends FormRequest
         return [
             'contact' => 'required|string',
             'content' => 'required|string',
-            'schedule_date' => 'required|date_format:Y-m-d H:i:s',
+            'schedule_date' => 'required|date',
         ];
     }
 }
