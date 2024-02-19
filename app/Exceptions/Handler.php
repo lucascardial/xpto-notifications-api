@@ -37,6 +37,8 @@ class Handler extends ExceptionHandler
 
             if($e->extra['ui_dialog_content_type'] === ErrorUiDialogContentTypeEnum::SERVER_RENDERED) {
                 $extra['html_content'] = view($e->extra['ui_view'])->render();
+                unset($extra['ui_view']);
+                unset($extra['ui_dialog_content_type']);
             }
 
             return response()->json([

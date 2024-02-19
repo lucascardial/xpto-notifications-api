@@ -5,6 +5,7 @@ ENV PHP_DISMOD=bz2,calendar,exiif,ffi,intl,gettext,ldap,mysqli,imap,soap,sockets
 WORKDIR /app
 COPY . /app/
 COPY ./docker/supervisord.conf /opt/docker/etc/supervisor.d/custom.conf
+COPY ./docker/contatos_template.csv /app/storage/app/public/contatos_template.csv
 RUN mkdir /app/storage/app/keys
 RUN cd /app && composer install --no-interaction --optimize-autoloader --no-dev
 # Ensure all of our files are owned by the same user and group.
