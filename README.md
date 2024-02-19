@@ -1,66 +1,48 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Documentação da API - Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este documento fornece uma visão geral e instruções para utilizar a API construída com Laravel 10 e PHP 8.2. Destaca-se a adoção do padrão CQRS para a segregação da lógica.
 
-## About Laravel
+## Visão Geral
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A API é construída com o framework Laravel 10, que é conhecido por sua elegância, simplicidade e eficiência. Além disso, a versão 8.2 do PHP é utilizada para garantir um desempenho e segurança otimizados.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Padrão CQRS
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+O padrão CQRS (Command Query Responsibility Segregation) é adotado nesta API para separar as operações de leitura (queries) das operações de escrita (commands). Isso permite uma melhor organização e escalabilidade do código, facilitando a manutenção e a adição de novas funcionalidades.
 
-## Learning Laravel
+## Estrutura do Projeto
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+A estrutura do projeto Laravel segue as convenções padrão do framework, com os principais diretórios e arquivos sendo:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- `app/`: Contém os modelos, controladores e outros artefatos da aplicação.
+- `database/`: Contém as migrações de banco de dados, seeds e factories.
+- `routes/`: Contém os arquivos de definição de rotas da API.
+- `config/`: Contém os arquivos de configuração da aplicação.
+- `src/Core`: Contém definições de interface do nucleo do sistema, como comandos, queries, erros, e leitura de arquivos.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Além disso, o projeto é dividido em módulos, cada um podendo conter seus próprios comandos, queries, modelos, jobs, recursos de lingua e outros. Os módulos são organizados no diretório `src/Modules`.
 
-## Laravel Sponsors
+- `src/Modules/Contact`: Contém os comandos, queries, modelos e outros artefatos relacionados ao módulo de contato.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- `src/Modules/Sheet`: Contém as classes concretas para a leitura de arquivos csv.
 
-### Premium Partners
+## Endpoints Principais
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+A API oferece os seguintes endpoints principais:
 
-## Contributing
+1. `[post] api/v1/contacts/upload-csv`: Endpoint para realizar o upload de um arquivo CSV contendo informações de contato para notificação em massa.
+2. `[get] api/v1/contacts/notifications`: Endpoint para listar as notificações de contato pendentes.
+3. `[put] api/v1/contacts/notifications`: Endpoint para editar as notificações de contato pendentes.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Autenticação e Autorização
 
-## Code of Conduct
+Para o escopo deste projeto a autenticação e autorização não foram implementadas. No entanto, é possível adicionar esses recursos utilizando o Laravel Passport ou outras bibliotecas de autenticação.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Documentação Adicional
 
-## Security Vulnerabilities
+Para mais detalhes sobre como utilizar os endpoints da API, consulte a documentação oficial do Laravel em [https://laravel.com/docs](https://laravel.com/docs).
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+## Licença
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Esta API é licenciada sob a [Licença MIT](https://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT).
