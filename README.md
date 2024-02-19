@@ -43,6 +43,10 @@ A API oferece os seguintes endpoints principais:
 
 Para o escopo deste projeto a autenticação e autorização não foram implementadas. No entanto, é possível adicionar esses recursos utilizando o Laravel Passport ou outras bibliotecas de autenticação.
 
+## Cacheamento
+
+Devido o escopo do projeto, o cacheamento não foi implementado.
+
 ## Documentação Adicional
 
 Para mais detalhes sobre o desenvolvimento da API, consulte a documentação oficial do Laravel em [https://laravel.com/docs](https://laravel.com/docs).
