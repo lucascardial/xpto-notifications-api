@@ -12,7 +12,7 @@ use Illuminate\Config\Repository as Configuration;
 use Modules\Contact\ConfigurationKeys;
 use Modules\Contact\Enums\ContactFileImportStatusEnum;
 use Modules\Contact\Errors\InvalidCsvTemplateError;
-use Modules\Contact\Jobs\NotifyContactsFromCsvChunkJob;
+use Modules\Contact\Jobs\ScheduleNotifyContactsFromCsvChunkJob;
 use Modules\Contact\Jobs\PersistContactFromCsvChunkJob;
 use Modules\Contact\Models\ContactFileImport;
 use function Ramsey\Uuid\v4;
@@ -68,7 +68,7 @@ class ReadContactsFromCsvCommandHandler implements CommandHandlerInterface
         foreach ($csvChunk as $chunk) {
             $totalLines += count($chunk->rows);
             $this->dispatcher->dispatch(new PersistContactFromCsvChunkJob($chunk));
-            $this->dispatcher->dispatch(new NotifyContactsFromCsvChunkJob($chunk));
+            $this->dispatcher->dispatch(new ScheduleNotifyContactsFromCsvChunkJob($chunk));
         }
 
         $contactFileImport->update([

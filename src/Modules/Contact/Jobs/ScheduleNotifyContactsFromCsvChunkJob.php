@@ -14,7 +14,7 @@ use Modules\Contact\Enums\ContactTypeEnum;
 use Modules\Contact\Helpers;
 use Modules\Sheet\CsvChunk;
 
-class NotifyContactsFromCsvChunkJob implements ShouldQueue
+class ScheduleNotifyContactsFromCsvChunkJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
