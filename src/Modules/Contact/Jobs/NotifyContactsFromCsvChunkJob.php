@@ -46,7 +46,7 @@ class NotifyContactsFromCsvChunkJob implements ShouldQueue
                 contact: $contact,
                 channel: $contactType->notifyBy(),
                 template: 'default-notification',
-                scheduleTime: now()->addMinutes(25)
+                scheduleTime: now()
             );
 
             $handler->handle($command);

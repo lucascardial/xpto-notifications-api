@@ -47,10 +47,11 @@ class PersistChunkContactsCommandHandler implements CommandHandlerInterface
                 continue;
 
             $contactsPayload[] = [
-                'id' => v4(),
+                'uuid' => v4(),
                 'name' => $name,
                 'contact' => $contact,
                 'contact_type' => Helpers::checkContactType($contact)->value,
+                'created_at' => now(),
             ];
         }
 

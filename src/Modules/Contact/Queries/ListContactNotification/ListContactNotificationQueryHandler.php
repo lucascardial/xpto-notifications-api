@@ -20,6 +20,7 @@ class ListContactNotificationQueryHandler implements QueryHandlerInterface
 
         return  ContactNotification::query()
             ->where('status', $query->status)
+            ->orderBy('id', 'asc')
             ->paginate($limit, ['*'], 'page', $page)
             ->through(function (ContactNotification $notification) {
                 return [

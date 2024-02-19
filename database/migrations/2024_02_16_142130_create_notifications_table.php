@@ -13,7 +13,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('contact_notifications', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
+            $table->uuid('uuid')->unique();
             $table->string('contact');
             $table->text('content');
             $table->timestamp('schedule_time');

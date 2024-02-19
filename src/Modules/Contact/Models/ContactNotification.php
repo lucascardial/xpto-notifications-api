@@ -18,8 +18,8 @@ use Illuminate\Notifications\Notifiable;
  */
 class ContactNotification extends Model
 {
-    use Notifiable, HasUuids;
     protected $fillable = [
+        'uuid',
         'contact',
         'content',
         'channel',

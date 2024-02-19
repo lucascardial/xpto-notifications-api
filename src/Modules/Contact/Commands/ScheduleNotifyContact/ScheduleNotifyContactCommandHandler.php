@@ -26,7 +26,7 @@ class ScheduleNotifyContactCommandHandler implements CommandHandlerInterface
         // Schedule the notification
         ContactNotification::query()
             ->insert([
-                'id' => v4(),
+                'uuid' => v4(),
                 'contact' => $command->contact,
                 'content' => $content,
                 'schedule_time' => $command->scheduleTime,
