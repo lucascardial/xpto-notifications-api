@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Contacts\DeleteContactNotificationController;
 use App\Http\Controllers\Contacts\EditContactNotificationController;
 use App\Http\Controllers\Contacts\ListContactFileImportController;
 use App\Http\Controllers\Contacts\ListContactNotificationController;
@@ -20,13 +21,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->name('v1.')->group(function () {
     Route::prefix('contacts')->name('contacts.')->group(function () {
-        Route::get('notifications', ListContactNotificationController::class);
+        Route::get('notifications', ListContactNotificationController::class)->name('notifications');
 
         Route::get('notifications/{id}', ShowContactNotificationController::class)
             ->name('notifications.show');
 
         Route::put('notifications/{id}', EditContactNotificationController::class)
-            ->name('notifications.edit');
+            ->name('notifications.update');
+
+        Route::delete('notifications/{id}', DeleteContactNotificationController::class)
+            ->name('notifications.delete');
 
         Route::post('upload-csv', UploadCsvController::class)->name('upload-csv');
 
