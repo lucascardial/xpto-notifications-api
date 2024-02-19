@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * @property string id
+ * @property int id
+ * @property string uuid
  * @property string contact
  * @property string content
  * @property string channel
@@ -24,7 +25,8 @@ class ContactNotification extends Model
         'content',
         'channel',
         'status',
-        'schedule_time'
+        'schedule_time',
+        'created_at'
     ];
 
     protected $casts = [
