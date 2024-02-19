@@ -17,7 +17,7 @@ class GetContactNotificationQueryHandler implements QueryHandlerInterface
     {
         /** @var ContactNotification $contactNotification */
         $contactNotification = ContactNotification::query()
-            ->where('id', $query->id)
+            ->where('uuid', $query->id)
             ->firstOrFail();
 
         return new ContactNotificationDto(
