@@ -22,7 +22,8 @@ class ListContactNotificationController extends Controller
         $page = $request->get('page', 1);
         $limit = $request->get('limit', 5);
 
-        $status = ContactNotificationStatusEnum::PENDING;
+        $status =  ContactNotificationStatusEnum::tryFrom($request->get('status'))
+            ?? ContactNotificationStatusEnum::PENDING;
 
         return $this->queryHandler->handle(new ListContactNotificationQuery(
             page: $page, limit: $limit, status: $status));
