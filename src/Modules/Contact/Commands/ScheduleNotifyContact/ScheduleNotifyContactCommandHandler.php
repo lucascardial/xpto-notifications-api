@@ -31,7 +31,8 @@ class ScheduleNotifyContactCommandHandler implements CommandHandlerInterface
                 'content' => $content,
                 'schedule_time' => $command->scheduleTime,
                 'channel' => $command->channel,
-                'status' => ContactNotificationStatusEnum::PENDING
+                'status' => ContactNotificationStatusEnum::PENDING,
+                'created_at' => now(),
             ]);
     }
 }
