@@ -2,6 +2,9 @@
 
 Este documento fornece uma visão geral e instruções para utilizar a API construída com Laravel 10 e PHP 8.2. Destaca-se a adoção do padrão CQRS para a segregação da lógica.
 
+## Executando a API
+Por favor, para executar este projeto em conjunto com o projeto de frontend, siga as instruções [ESSAS INSTRUÇÕES](https://github.com/lucascardial/xpto-notifications-docker). Neste repositório você encontrará as instruções para executar o projeto em um ambiente dockerizado.
+
 ## Visão Geral
 
 A API é construída com o framework Laravel 10, que é conhecido por sua elegância, simplicidade e eficiência. Além disso, a versão 8.2 do PHP é utilizada para garantir um desempenho e segurança otimizados.
