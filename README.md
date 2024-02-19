@@ -40,7 +40,7 @@ Para o escopo deste projeto a autenticação e autorização não foram implemen
 
 ## Documentação Adicional
 
-Para mais detalhes sobre como utilizar os endpoints da API, consulte a documentação oficial do Laravel em [https://laravel.com/docs](https://laravel.com/docs).
+Para mais detalhes sobre o desenvolvimento da API, consulte a documentação oficial do Laravel em [https://laravel.com/docs](https://laravel.com/docs).
 
 
 ## Licença
